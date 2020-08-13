@@ -6,3 +6,7 @@ We retrained some models on the cleaned dataset and found experimental results i
 The new model of VNS-GRU achieves better results than any other models on all the metrics. 
 
 ## Experiment Results
+
+
+## Data Download
+[GoogleDrive](https://drive.google.com/file/d/1kVgaefASHM2GP4gZBNw90KcwGs3qZXWf/view?usp=sharing)
