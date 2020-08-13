@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+saves2/
+saves/
+pycocoevalcap/
