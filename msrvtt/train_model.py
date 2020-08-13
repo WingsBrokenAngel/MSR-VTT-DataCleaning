@@ -17,9 +17,9 @@ data_dict = None
 model = None
 options = None
 
-METRICS = {'Bleu_4': 0., 'CIDEr': 0., 
-           'METEOR': 0., 'ROUGE_L': 0.}
-# METRICS = {'CIDEr': 0.}
+# METRICS = {'Bleu_4': 0., 'CIDEr': 0., 
+#            'METEOR': 0., 'ROUGE_L': 0.}
+METRICS = {'CIDEr': 0.}
 MAX = {key: 0. for key in METRICS}
 min_xe = 1000.
 
@@ -133,8 +133,8 @@ def main():
             cal_metrics(sess, 'test')
         else:
             saver.restore(sess, flags.test)
-            cal_metrics(sess, 'train')
-            cal_metrics(sess, 'val')
+            # cal_metrics(sess, 'train')
+            # cal_metrics(sess, 'val')
             cal_metrics(sess, 'test')
         sess.close()
 

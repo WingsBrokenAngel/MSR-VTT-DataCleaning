@@ -8,7 +8,6 @@ from pprint import pprint
 from collections import defaultdict
 from config import Config
 from model import SGRU
-from gru import GRU
 import sys
 from pycocoevalcap.bleu.bleu import Bleu
 from pycocoevalcap.rouge.rouge import Rouge
@@ -47,12 +46,11 @@ def get_batch1(indices, data_dict):
     train_data = data_dict['train_data']
     eco_res_feat = data_dict['eco_res_feat']
     tag_feat = data_dict['tag_feat']
-    max_len = min(max([len(train_data[0][idx]) for idx in indices]), 25)
+    max_len = max([len(train_data[0][idx]) for idx in indices])
     captions = np.zeros(shape=(max_len, len(indices)), dtype=np.int32)
     tags, vid_feats = [], []
     for idx1, idx2 in enumerate(indices):
         sent = train_data[0][idx2]
-        sent = sent[:25] if len(sent) > 25 else sent
         captions[:len(sent), idx1] = sent
         vid_idx = train_data[1][idx2]
         tags.append(tag_feat[vid_idx])
@@ -81,9 +79,8 @@ def get_batch2(indices, data_dict, size_per_vid):
     captions = {i: idx2gts[i] for i in indices}
     for key in captions:
         sents = captions[key]
-        choices = np.random.choice(np.arange(len(sents)), size_per_vid)
+        choices = np.random.choice(np.arange(len(sents)), size_per_vid, True)
         captions[key] = [sents[c] for c in choices]
-        captions[key] = [c[:25] if len(c) > 25 else c for c in captions[key]]
     max_len = 0
     for key in captions:
         for sent in captions[key]:
@@ -133,11 +130,6 @@ def get_model(options):
     model = SGRU(options)
     return model
 
-
-def get_gru(options):
-    model = GRU(options)
-    return model
-    
 
 def get_options(data_dict):
     options = Config(data_dict['corpus'][5])
@@ -189,8 +181,8 @@ def train_part1(train_idx, train_op, train_loss,
 
 def train_part2(train_indices, train_op, train_loss, sess, 
                 epoch_idx, options, data_dict, model):
-    # size_per_vid = int(2**(epoch_idx // 16))
-    size_per_vid = 8
+    size_per_vid = int(2**(epoch_idx // 16))
+    # size_per_vid = 2
     vid_num = options.batch_size // size_per_vid
     for idx in range(0, options.train_size2, vid_num):
         start_idx = idx

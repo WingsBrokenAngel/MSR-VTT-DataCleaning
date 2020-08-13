@@ -6,7 +6,7 @@ class Config():
         self._n_h = 1024
         self._n_f = 128
         self._n_t = 1700# 1399
-        self._n_v = 7728# 9933# 10171# 9933 # 20192
+        self._n_v = 9933# 13796 # 20192
         self._n_z1 = 2048
         self._n_z2 = 1536
         self._embed = embed
@@ -19,10 +19,10 @@ class Config():
         self._threshold = 16
         self._max_steps = 20
         self._batch_size = 128
-        self._keep_prob = 0.5 
+        self._keep_prob = 0.5
         self._wd = 0.9455
-        self._gamma = 0.3
-        self._avglen = 9.4
+        self._gamma = 0.4 
+        self._avglen = 10
         self._we_trainable = False
 
     @property
