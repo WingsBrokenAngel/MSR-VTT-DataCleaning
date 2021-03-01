@@ -1,12 +1,17 @@
-# MSR-VTT-DataCleaning
+# Annotation Cleaning for the MSR-Video to Text Dataset
+We found that MSR-VTT dataset contains a lot of noisy annotations. 
+After analyzing the data carefully, we put some efforts on cleaning the annotations. 
+We retrained some models on the cleaned dataset and found experimental results improved compared to the previous models. 
 
-We found MSR-VTT dataset contains a lot of noisy samples. 
-After analyzing the data carefully, we put some effort on cleaning the dataset. 
-We retrained some models on the cleaned dataset and found experimental results improved on the old test set. 
-The new model of VNS-GRU achieves better results than any other models on all the metrics. 
+## Requirements
+1. Python 3
+2. Jupyter Notebook
+3. TensorFlow 1.13
 
-## Experiment Results
+##  Information
+`clean_process` is the folder for cleaning MSR-VTT dataset. 
+`msrvtt_model` is the folder for training a new model.
 
-
-## Data Download
-[GoogleDrive](https://drive.google.com/file/d/1kVgaefASHM2GP4gZBNw90KcwGs3qZXWf/view?usp=sharing)
+## Links
+[GoogleDrive](https://drive.google.com/file/d/1kVgaefASHM2GP4gZBNw90KcwGs3qZXWf/view?usp=sharing)   
+[Paper Link](https://arxiv.org/abs/2102.06448)
